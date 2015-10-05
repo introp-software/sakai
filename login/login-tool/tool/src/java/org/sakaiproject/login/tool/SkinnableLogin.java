@@ -23,6 +23,8 @@ package org.sakaiproject.login.tool;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.ServletConfig;
@@ -35,8 +37,8 @@ import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.sakaiproject.component.cover.ComponentManager;
 import org.sakaiproject.component.api.ServerConfigurationService;
+import org.sakaiproject.component.cover.ComponentManager;
 import org.sakaiproject.event.cover.UsageSessionService;
 import org.sakaiproject.exception.IdUnusedException;
 import org.sakaiproject.login.api.Login;
@@ -132,6 +134,11 @@ public class SkinnableLogin extends HttpServlet implements Login {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 		throws ServletException, IOException 
 	{
+		Object ssoObj = req.getAttribute("singleSignOn");
+		if(ssoObj != null && ssoObj.toString().equals("TRUE"))
+		{
+			doPost(req, res);
+		}
 		// get the session
 		Session session = SessionManager.getCurrentSession();
 
@@ -306,7 +313,19 @@ public class SkinnableLogin extends HttpServlet implements Login {
 		// submit
 		else
 		{
-			LoginCredentials credentials = new LoginCredentials(req);
+			LoginCredentials credentials;
+			Map<String,Boolean> paramMap = new HashMap<String,Boolean>();
+			Object ssoObj = req.getAttribute("singleSignOn");
+			if(ssoObj != null && ssoObj.toString().equals("TRUE")){
+				paramMap.put("thirdPartyLogin", true);
+				credentials = new LoginCredentials(req.getAttribute("eid").toString(), null, null);
+				credentials.setParameterMap(paramMap);
+				credentials.setRequest(req);
+			} else {
+				paramMap.put("thirdPartyLogin",false);
+				credentials = new LoginCredentials(req);
+				credentials.setParameterMap(paramMap);
+			}
 			credentials.setSessionId(session.getId());
 
 			try {

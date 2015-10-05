@@ -26,19 +26,19 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
 
-import org.sakaiproject.component.cover.ComponentManager;
 import org.sakaiproject.component.api.ServerConfigurationService;
+import org.sakaiproject.component.cover.ComponentManager;
 import org.sakaiproject.event.api.UsageSessionService;
 import org.sakaiproject.login.api.Login;
 import org.sakaiproject.login.api.LoginAdvisor;
 import org.sakaiproject.login.api.LoginCredentials;
 import org.sakaiproject.login.api.LoginRenderEngine;
 import org.sakaiproject.login.api.LoginService;
-
 import org.sakaiproject.user.api.Authentication;
 import org.sakaiproject.user.api.AuthenticationException;
-import org.sakaiproject.user.api.Evidence;
 import org.sakaiproject.user.api.AuthenticationManager;
+import org.sakaiproject.user.api.Evidence;
+import org.sakaiproject.util.ExternalTrustedEvidence;
 import org.sakaiproject.util.IdPwEvidence;
 
 
@@ -67,7 +67,9 @@ public abstract class LoginServiceComponent implements LoginService {
 		{
 			String eid = credentials.getIdentifier();
 			String pw = credentials.getPassword();
-			
+			Map<String, Boolean> paramMap = credentials.getParameterMap();
+
+			boolean isTpLogin = paramMap.get("thirdPartyLogin");
 			boolean isEidEmpty = (eid == null) || (eid.length() == 0);
 			boolean isPwEmpty = (pw == null) || (pw.length() == 0);
 			
@@ -77,7 +79,7 @@ public abstract class LoginServiceComponent implements LoginService {
 				}
 			}
 			
-			if (isEidEmpty || isPwEmpty)
+			if (!isTpLogin && (isEidEmpty || isPwEmpty))
 			{
 				throw new AuthenticationException("missing-fields");
 			}
@@ -85,7 +87,10 @@ public abstract class LoginServiceComponent implements LoginService {
 			// Do NOT trim the password, since many authentication systems allow whitespace.
 			eid = eid.trim();
 
-			Evidence e = new IdPwEvidence(eid, pw);
+			Evidence e;
+			if (!isTpLogin)
+				e = new IdPwEvidence(eid, pw);
+			e = new ExternalTrustedEvidence(eid);
 
 			Authentication a = authenticationManager().authenticate(e);
 

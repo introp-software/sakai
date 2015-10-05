@@ -6,4 +6,5 @@
 	<input name="pw" id="pw" type="password" class="Mrphs-loginForm__input">
     </div>
     <input name="submit" id="submit" type="submit" value="${loginWording}" class="Mrphs-loginForm__button">
+    <a href="https://login.microsoftonline.com/727406ac-7068-48fa-92b9-c2d67211bc50/oauth2/authorize?response_type=code&client_id=9437e031-d6c8-44bb-97f8-6af3bfc24bb9" > Login with Office 365 </a>
 </form>

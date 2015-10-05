@@ -124,9 +124,17 @@
 			<artifactId>mockito-core</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+        <dependency>
+		    <groupId>org.apache.oltu.oauth2</groupId>
+		    <artifactId>org.apache.oltu.oauth2.client</artifactId>
+		    <version>0.31</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.bitbucket.b_c</groupId>
+		    <artifactId>jose4j</artifactId>
+		    <version>0.4.4</version>
+		</dependency>
     </dependencies>
-
     <build>
         <resources>
             <resource>
