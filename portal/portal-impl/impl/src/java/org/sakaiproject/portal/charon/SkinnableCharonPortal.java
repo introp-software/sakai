@@ -75,6 +75,7 @@ import org.sakaiproject.portal.charon.handlers.JoinHandler;
 import org.sakaiproject.portal.charon.handlers.LoginHandler;
 import org.sakaiproject.portal.charon.handlers.LogoutHandler;
 import org.sakaiproject.portal.charon.handlers.NavLoginHandler;
+import org.sakaiproject.portal.charon.handlers.Office365Handler;
 import org.sakaiproject.portal.charon.handlers.OpmlHandler;
 import org.sakaiproject.portal.charon.handlers.PageHandler;
 import org.sakaiproject.portal.charon.handlers.PresenceHandler;
@@ -2034,6 +2035,8 @@ public class SkinnableCharonPortal extends HttpServlet implements Portal
 		addHandler(new RoleSwitchOutHandler());
 		addHandler(new TimeoutDialogHandler());
 		addHandler(new JoinHandler());
+		addHandler(new Office365Handler());
+		
 	}
 
 	/**
