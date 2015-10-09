@@ -937,7 +937,7 @@ public class SkinnableCharonPortal extends HttpServlet implements Portal
 			session.setAttribute(Tool.HELPER_DONE_URL, returnUrl);
 		}
 
-		ActiveTool tool = ActiveToolManager.getActiveTool("sakai.login");
+		ActiveTool tool = ActiveToolManager.getActiveTool("sakai.oauth2");
 
 		// to skip container auth for this one, forcing things to be handled
 		// internaly, set the "extreme" login path
