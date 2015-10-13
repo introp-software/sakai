@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	
 	<modelVersion>4.0.0</modelVersion>
-	
-	<name>oauth2 - Base</name>
-	<groupId>org.sakaiproject.oauth2</groupId>
-	<artifactId>oauth2</artifactId>
-	
-	<packaging>pom</packaging>
-	<version>1.0-SNAPSHOT</version>
-	
 	<parent>
     	<groupId>org.sakaiproject</groupId>
     	<artifactId>master</artifactId>
     	<version>11-SNAPSHOT</version>
     	<relativePath>../master/pom.xml</relativePath>
   	</parent>
+  	
+	<name>oauth2 - Base</name>
+	<groupId>org.sakaiproject.oauth2</groupId>
+	<artifactId>oauth2</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	
+    <modules>
+	    <module>tool</module>
+	    <module>api</module>
+	    <module>impl</module>
+	    <module>pack</module>
+    </modules>
+    
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -102,10 +106,4 @@
 	</dependencyManagement>
 	
 	
-  <modules>
-    <module>tool</module>
-    <module>api</module>
-    <module>impl</module>
-    <module>pack</module>
-  </modules>
 </project>

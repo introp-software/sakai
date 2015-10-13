@@ -76,18 +76,18 @@
     <!--   <servlet-name>SkinnableOauth2Login</servlet-name>-->
    <servlet-name>sakai.oauth2</servlet-name>
     <servlet-class>org.sakaiproject.oauth2.tool.SkinnableOauth2Login</servlet-class>
-    <init-param>
-            <param-name>container</param-name>
-            <param-value>/sakai-login-tool/container</param-value>
-        </init-param>
-        <init-param>
-        	<param-name>container-logout</param-name>
-        	<param-value>/sakai-login-tool/container/logout</param-value>
-        </init-param>
+<!--     <init-param> -->
+<!--             <param-name>container</param-name> -->
+<!--             <param-value>/sakai-login-tool/container</param-value> -->
+<!--         </init-param> -->
+<!--         <init-param> -->
+<!--         	<param-name>container-logout</param-name> -->
+<!--         	<param-value>/sakai-login-tool/container/logout</param-value> -->
+<!--         </init-param> -->
       <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>SkinnableOauth2Login</servlet-name>
-    <url-pattern>/SkinnableOauth2Login</url-pattern>
+    <servlet-name>sakai.oauth2</servlet-name>
+    <url-pattern>/*</url-pattern>
   </servlet-mapping>
 </web-app>

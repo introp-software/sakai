@@ -15,11 +15,15 @@ import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.sakaiproject.component.api.ServerConfigurationService;
 import org.sakaiproject.component.cover.ComponentManager;
 import org.sakaiproject.event.cover.UsageSessionService;
 import org.sakaiproject.exception.IdUnusedException;
+import org.sakaiproject.login.api.Login;
+import org.sakaiproject.login.api.LoginCredentials;
+import org.sakaiproject.login.api.LoginRenderContext;
+import org.sakaiproject.login.api.LoginRenderEngine;
+import org.sakaiproject.login.api.LoginService;
 import org.sakaiproject.site.api.Site;
 import org.sakaiproject.site.api.SiteService;
 import org.sakaiproject.site.api.ToolConfiguration;
@@ -110,7 +114,7 @@ public class SkinnableOauth2Login extends HttpServlet implements Login {
 		return "Sakai Login";
 	}
 
-	@SuppressWarnings(value = "HRS_REQUEST_PARAMETER_TO_HTTP_HEADER", justification = "Looks like the data is already URL encoded")
+	@SuppressWarnings(value = "HRS_REQUEST_PARAMETER_TO_HTTP_HEADER")
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// get the session
 		Session session = SessionManager.getCurrentSession();
