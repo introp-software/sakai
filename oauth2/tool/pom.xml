@@ -22,7 +22,7 @@
 			<groupId>org.sakaiproject.oauth2</groupId>
 			<artifactId>oauth2-api</artifactId>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 		  <groupId>org.sakaiproject.login</groupId>
 		  <artifactId>login-impl</artifactId>
 		      		<version>11-SNAPSHOT</version>
@@ -32,7 +32,7 @@
 			<artifactId>login-api</artifactId>
     		<version>11-SNAPSHOT</version>
         	<scope>provided</scope>
-      	</dependency>
+      	</dependency>  -->
 		<!-- third party dependencies -->
 		<dependency>
 			<groupId>commons-lang</groupId>

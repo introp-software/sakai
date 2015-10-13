@@ -115,6 +115,7 @@
                 <module>velocity</module>
                 <module>web</module>
                 <module>webservices</module>
+				<module>oauth2</module>
             </modules>
         </profile>
         <profile>
